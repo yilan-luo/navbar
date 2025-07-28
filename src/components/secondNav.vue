@@ -81,8 +81,19 @@ const openMenu = () => {
 }
 
 .icon {
+    width: 32px;
+    height: 32px;
+    align-items: center;
     display: none;
     cursor: pointer;
+    padding: 4px;
+    box-sizing: content-box;
+    border-radius: 50%;
+}
+
+.icon:hover {
+    transition-duration: 0.3s;
+    background-color: rgb(17, 102, 49);
 }
 
 @media (max-width: 780px) {
@@ -95,7 +106,7 @@ const openMenu = () => {
         flex-direction: column;
         position: absolute;
         background-color: rgb(34, 154, 114);
-        top: 63px;
+        top: 76px;
         right: 0px;
         box-shadow: 0 1px 3px 1px;
         padding: 20px 10px;

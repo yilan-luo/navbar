@@ -29,4 +29,5 @@ const forthNav = useForthItemStore();
             {{ forthNav.name }}
         </router-link>
     </div>
+    <div>像Gemini那样，一比一复刻</div>
 </template>
