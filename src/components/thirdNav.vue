@@ -29,7 +29,12 @@ onMounted(() => {
 
 <template>
     <div class="menu" ref="iconRef">
-        <menuIcon />
+        <menuIcon v-tippy="{
+            content: 'Menu',
+            placement: 'bottom',
+            arrow: false,
+            animation: 'shift-toward',
+        }" />
     </div>
     <div class="nav-container" ref="navRef">
         <div class="items">
