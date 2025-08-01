@@ -53,6 +53,8 @@ const openMenu = () => {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 1px 3px 1px rgb(5, 92, 74);
+    position: sticky;
+    top: 0px;
 }
 
 .content {
@@ -67,7 +69,7 @@ const openMenu = () => {
     padding: 8px 15px;
     font-size: 15px;
     color: white;
-    transition-duration: 0.3s;
+    transition-duration: 0.2s;
 }
 
 .content a:hover {
