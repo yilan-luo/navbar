@@ -1,15 +1,9 @@
 <script setup>
-import { useFirstItemStore } from '@/stores/navItems';
-import { useSecondItemStore } from '@/stores/navItems';
-import { useThirdItemStore } from '@/stores/navItems';
-import { useForthItemStore } from '@/stores/navItems';
+import { useNavItemsStore } from '@/stores/navItems';
 import { ref } from 'vue';
 import gridViewIcon from '@/components/icons/grid-view.vue';
 
-const firstNav = useFirstItemStore();
-const secondNav = useSecondItemStore();
-const thirdNav = useThirdItemStore();
-const forthNav = useForthItemStore();
+const navItemStore = useNavItemsStore();
 const MenuOpened = ref(false);
 
 const openMenu = () => {
@@ -26,19 +20,8 @@ const openMenu = () => {
                     <gridViewIcon />
                 </div>
                 <div :class="{ 'active': MenuOpened, 'close': !MenuOpened }">
-                    <router-link to="/">
-                        {{ firstNav.name }}
-                    </router-link>
-                    <router-link to="/second">
-                        <span>
-                            {{ secondNav.name }}
-                        </span>
-                    </router-link>
-                    <router-link to="/third">
-                        {{ thirdNav.name }}
-                    </router-link>
-                    <router-link to="/forth">
-                        {{ forthNav.name }}
+                    <router-link class="items" v-for="item in navItemStore.items" :key="item.id" :to="item.path">
+                        {{ item.name }}
                     </router-link>
                 </div>
             </div>
@@ -121,5 +104,9 @@ const openMenu = () => {
     .close {
         display: none;
     }
+}
+
+.items.router-link-exact-active {
+    font-weight: bold;
 }
 </style>

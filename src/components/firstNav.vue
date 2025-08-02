@@ -13,18 +13,10 @@
       </div>
 
       <ul class="nav-menu" :class="{ 'active': isMenuOpen }">
-        <li class="nav-item">
-          <router-link to="/" class="nav-link" @click="closeMenu">{{ firstNav.name }}</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/second" class="nav-link" @click="closeMenu">{{ secondNav.name }}</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/third" class="nav-link" @click="closeMenu">{{ thirdNav.name }}</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/forth" class="nav-link" @click="closeMenu">{{ forthNav.name }}</router-link>
-        </li>
+        <router-link @click="closeMenu" v-for="item in navItemStore.items" :key="item.id" :to="item.path"
+          class="nav-item nav-link">
+          {{ item.name }}
+        </router-link>
       </ul>
     </div>
   </nav>
@@ -32,16 +24,10 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useFirstItemStore } from '@/stores/navItems';
-import { useSecondItemStore } from '@/stores/navItems';
-import { useThirdItemStore } from '@/stores/navItems';
-import { useForthItemStore } from '@/stores/navItems';
+import { useNavItemsStore } from '@/stores/navItems';
 
 
-const firstNav = useFirstItemStore();
-const secondNav = useSecondItemStore();
-const thirdNav = useThirdItemStore();
-const forthNav = useForthItemStore();
+const navItemStore = useNavItemsStore();
 
 const isMenuOpen = ref(false);
 const toggleMenu = () => {
