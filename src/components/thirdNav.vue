@@ -9,7 +9,7 @@ const navItemStore = useNavItemsStore();
 const isNavOpen = ref(false);
 
 // 2. 新增：处理点击时涟漪效果的逻辑
-function handleMenuClick(event) {
+function buttonRipple(event) {
     const button = event.currentTarget;
 
     // 创建涟漪元素
@@ -34,10 +34,16 @@ function handleMenuClick(event) {
         ripple.remove();
     }, 600); // 必须与 CSS 中的动画时长相匹配
 }
+
+const isSearchOpen = ref(false);
+const openSearch = () => {
+    isSearchOpen.value = !isSearchOpen.value;
+}
+
 </script>
 
 <template>
-    <div class="search" @mouseover="isNavOpen = true" @click="handleMenuClick">
+    <div class="search" @mouseover="isNavOpen = true" @click="buttonRipple($event), openSearch()">
         <searchIcon v-tippy="{
             content: 'Search',
             placement: 'bottom-end',
@@ -53,6 +59,9 @@ function handleMenuClick(event) {
             </router-link>
         </div>
     </div>
+
+    <input :class="{ searchBox: true, showSearchBox: isSearchOpen }" type="text" size="35" />
+
 </template>
 
 <style scoped>
@@ -128,5 +137,26 @@ function handleMenuClick(event) {
     .nav-container {
         width: 20%;
     }
+}
+
+.searchBox {
+    position: absolute;
+    top: 10px;
+    left: 42%;
+    padding: 8px 12px;
+    border-radius: 1em/1em;
+    border: solid #ced8e1;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+    translate: 0 -50px;
+    transition-duration: 0.3s;
+}
+
+.searchBox:focus {
+    border: solid #97a3ae;
+}
+
+.showSearchBox {
+    transform: translateY(50px);
 }
 </style>
